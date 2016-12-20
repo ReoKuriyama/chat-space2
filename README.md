@@ -12,6 +12,32 @@ Things you may want to cover:
 * Configuration
 
 * Database creation
+ ####messages
+
+  | column | type |
+|:-----------|:----------- |
+| body *n    |     text    |
+| image      |    string   |
+| group_id   |   integer   |
+| user_id    |   integer   |
+
+ ####users
+
+  | column | type |
+|:-----------|:----------- |
+| name *n   i|    string   |
+| devise関連 |             |
+| group_id   |   integer   |
+
+
+ ####groups
+
+  | column | type |
+|:-----------|:----------- |
+| key     *n |     string  |
+
+ *n = not null
+ i = index
 
 * Database initialization
 
