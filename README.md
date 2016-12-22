@@ -26,7 +26,8 @@ Things you may want to cover:
   | column | type |
 |:-----------|:----------- |
 | name *n   i|    string   |
-| devise関連 |             |
+| email      |    string   |
+|encrypted_password *n| string|
 | group_id   |   integer   |
 
 
