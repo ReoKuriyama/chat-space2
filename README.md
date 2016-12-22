@@ -35,7 +35,7 @@ Things you may want to cover:
 
   | column | type |
 |:-----------|:----------- |
-| key     *n |     string  |
+| group_name     *n |     string  |
 
  *n = not null
  i = index
