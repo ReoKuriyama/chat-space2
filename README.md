@@ -16,7 +16,7 @@ Things you may want to cover:
 
   | column | type |
 |:-----------|:----------- |
-| body *n    |     text    |
+| body n    |     text    |
 | image      |    string   |
 | group_id   |   integer   |
 | user_id    |   integer   |
@@ -25,7 +25,7 @@ Things you may want to cover:
 
   | column | type |
 |:-----------|:----------- |
-| name *n   i|    string   |
+| name n   i|    string   |
 | email      |    string   |
 |encrypted_password *n| string|
 | group_id   |   integer   |
@@ -35,11 +35,23 @@ Things you may want to cover:
 
   | column | type |
 |:-----------|:----------- |
-| group_name     *n |     string  |
+| key     n |     string  |
 
- *n = not null
+
+ n = not null
  i = index
-
+ 
+  
+ * Association
+ 
+  
+    user has_many messages
+    user belongs_to group
+  
+    message belongs_to user
+  
+   group has_many users
+  
 * Database initialization
 
 * How to run the test suite
