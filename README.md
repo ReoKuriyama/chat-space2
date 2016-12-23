@@ -40,24 +40,15 @@ Things you may want to cover:
 
  n = not null
  i = index
- 
-  
- * Association
- 
-  
-    user has_many messages
-    user belongs_to group
-  
-    message belongs_to user
-  
-   group has_many users
-  
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+* Association
 
-* Deployment instructions
+  user has_many messages
+  user belongs_to group
 
-* ...
+  message belongs_to user
+  message blongs_to group
+
+  group has_many users
+  group has_many messages
