@@ -28,14 +28,20 @@ Things you may want to cover:
 | name n   i|    string   |
 | email      |    string   |
 |encrypted_password *n| string|
-| group_id   |   integer   |
 
 
  ####groups
 
   | column | type |
 |:-----------|:----------- |
-| key     n |     string  |
+| group_name     n |     string  |
+
+ ####group_users
+
+  | column | type |
+|:-----------|:----------- |
+| group_id|    integer   |
+| user_id      |    integer   |
 
  n = not null
  i = index
@@ -43,11 +49,30 @@ Things you may want to cover:
 
 * Association
 
-
-  user has_many groups_users
-  user has_many groups thorugh: :groups_users
+  #####message
 
   message belongs_to user
 
-  group has_many groups_users
+  message belongs_to user
+
+
+  #####user
+
+  user has_many messages
+
+  user has_many group_users
+
+  user has_many groups through: :group_users
+
+  #####group
+  group has_many group_users
+
+  group has_many messages
+
   group has_many users through: :group_users
+
+  #####group_users
+
+  belongs_to user
+
+  belongs_to group
