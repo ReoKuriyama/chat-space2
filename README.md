@@ -37,18 +37,17 @@ Things you may want to cover:
 |:-----------|:----------- |
 | key     n |     string  |
 
-
  n = not null
  i = index
 
 
 * Association
 
-  user has_many messages
-  user belongs_to group
+
+  user has_many groups_users
+  user has_many groups thorugh: :groups_users
 
   message belongs_to user
-  message blongs_to group
 
-  group has_many users
-  group has_many messages
+  group has_many groups_users
+  group has_many users through: :group_users
