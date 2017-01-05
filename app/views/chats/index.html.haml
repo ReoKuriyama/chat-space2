@@ -1,0 +1,58 @@
+.contents
+  .sidebar
+    .sidebar-above
+      .wrap2
+        .top
+          %h2 Username
+          %a
+            = fa_icon "cog"
+          %a
+            = fa_icon "pencil-square-o"
+    .sidebar-bottom
+      %ul.sidebar-bottom--group
+        %li
+          %a.group-link{:href => ""}
+            %p.group-name tech
+            %p.group-intro まだメッセージはありません
+        %li
+          %a.group-link{:href => ""}
+            %p.group-name camp
+            %p.group-intro まだメッセージはありません
+        %li
+          %a.group-link{:href => ""}
+            %p.group-name master
+            %p.group-intro まだメッセージはありません
+
+  .main-content
+    .main-contents-above
+      .wrap
+        .main-contents-post
+          %a Edit
+        %h2 sampleグループ
+        %p Members: yamada taro
+    .main-contents-bottom
+      .wrap
+        %ul
+          %li
+            .chat-message.clearfix
+              %p.username yamada taro
+              %p.time 2016/10/02 08:23:32
+            %p.message おはようございます
+          %li
+            .chat-message.clearfix
+              %p.username yamada taro
+              %p.time 2016/10/02 08:23:32
+            %p.message おはようございます
+          %li
+            .chat-message.clearfix
+              %p.username yamada taro
+              %p.time 2016/10/02 08:23:32
+            %p.message おはようございます
+        .message-form
+          %form.new-message
+            .message__body
+              %textarea{:name => "message[body]", :placeholder => "type a message", :row => "1"}
+              %label.message__file
+                %input#message_image{:name => "message[image]", :type => "file"}/
+                = fa_icon "picture-o"
+            %input#form-send{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
