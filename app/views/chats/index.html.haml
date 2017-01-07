@@ -2,7 +2,7 @@
   .sidebar
     .sidebar-above
       .wrap2
-        .top
+        .sidebar-above__top
           %h2 Username
           %a
             = fa_icon "cog"
@@ -26,7 +26,7 @@
   .main-content
     .main-contents-above
       .wrap
-        .main-contents-post
+        .main-contents-above__top
           %a Edit
         %h2 sampleグループ
         %p Members: yamada taro
@@ -51,8 +51,8 @@
         .message-form
           %form.new-message
             .message__body
-              %textarea{:name => "message[body]", :placeholder => "type a message", :row => "1"}
+              %textarea{name: "message[body]", placeholder: "type a message", row: "1"}
               %label.message__file
-                %input#message_image{:name => "message[image]", :type => "file"}/
+                %input#message_image{name: "message[image]", type: "file"}/
                 = fa_icon "picture-o"
-            %input#form-send{"data-disable-with" => "Send", :name => "commit", :type => "submit", :value => "Send"}/
+            %input#form-send{"data-disable-with": "Send", name: "commit", type: "submit", value: "Send"}/
