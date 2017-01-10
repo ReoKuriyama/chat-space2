@@ -48,11 +48,11 @@
               %p.chat-body__username yamada taro
               %p.chat-body__time 2016/10/02 08:23:32
             %p.chat-body__message おはようございます
-        .message-form
-          %form.new-message
-            .message__body
+        .new-message
+          %form.new-message-form
+            .new-message-form__body
               %textarea{name: "message[body]", placeholder: "type a message", row: "1"}
-              %label.message__file
+              %label.new-message-form__body-file
                 %input#message_image{name: "message[image]", type: "file"}/
                 = fa_icon "picture-o"
             %input#form-send{"data-disable-with": "Send", name: "commit", type: "submit", value: "Send"}/
