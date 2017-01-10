@@ -9,45 +9,45 @@
           %a
             = fa_icon "pencil-square-o"
     .sidebar-bottom
-      %ul.sidebar-bottom--group
-        %li
-          %a.group-link{:href => ""}
-            %p.group-name tech
-            %p.group-intro まだメッセージはありません
-        %li
-          %a.group-link{:href => ""}
-            %p.group-name camp
-            %p.group-intro まだメッセージはありません
-        %li
-          %a.group-link{:href => ""}
-            %p.group-name master
-            %p.group-intro まだメッセージはありません
+      %ul.chat-groups
+        %li.chat-group
+          %a.chat-group__link{:href => ""}
+            %p.chat-group__name tech
+            %p.chat-group__intro まだメッセージはありません
+        %li.chat-group
+          %a.chat-group__link{:href => ""}
+            %p.chat-group__name camp
+            %p.chat-group__intro まだメッセージはありません
+        %li.chat-group
+          %a.chat-group__link{:href => ""}
+            %p.chat-group__name master
+            %p.chat-group__intro まだメッセージはありません
 
-  .main-content
-    .main-contents-above
+  .main
+    .main-above
       .wrap
-        .main-contents-above__top
+        .main-above__top
           %a Edit
         %h2 sampleグループ
         %p Members: yamada taro
-    .main-contents-bottom
+    .main-bottom
       .wrap
         %ul
           %li
-            .chat-message.clearfix
-              %p.username yamada taro
-              %p.time 2016/10/02 08:23:32
-            %p.message おはようございます
+            .chat-body.clearfix
+              %p.chat-body__username yamada taro
+              %p.chat-body__time 2016/10/02 08:23:32
+            %p.chat-body__message おはようございます
           %li
-            .chat-message.clearfix
-              %p.username yamada taro
-              %p.time 2016/10/02 08:23:32
-            %p.message おはようございます
+            .chat-body.clearfix
+              %p.chat-body__username yamada taro
+              %p.chat-body__time 2016/10/02 08:23:32
+            %p.chat-body__message おはようございます
           %li
-            .chat-message.clearfix
-              %p.username yamada taro
-              %p.time 2016/10/02 08:23:32
-            %p.message おはようございます
+            .chat-body.clearfix
+              %p.chat-body__username yamada taro
+              %p.chat-body__time 2016/10/02 08:23:32
+            %p.chat-body__message おはようございます
         .message-form
           %form.new-message
             .message__body

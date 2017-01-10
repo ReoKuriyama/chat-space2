@@ -8,13 +8,13 @@ html{
         height: 100%;
         width:  100%;
 
-        .main-content{
+        .main{
           width: calc(100% - 300px);
           height: 100%;
           float: left;
           position: relative;
 
-          .main-contents-above{
+          .main-above{
              height: 120px;
              background-color: #FFF;
              border-bottom: 1px solid #eee;
@@ -29,7 +29,7 @@ html{
               font-size: 12px;
               color: #999999;
               }
-              .main-contents-above__top{
+              .main-above__top{
               float: right;
               a{
                 display: inline-block;
@@ -43,14 +43,18 @@ html{
                }
              }
           }
-          .main-contents-bottom{
+          .main-bottom{
              background-color: #E6E6FA;
              height: calc(100% - 120px);
              ul{
               li{
                 padding-bottom: 40px;
-                .chat-message{
-
+                .chat-body{
+                  .chat-body__username{
+            font-size: 16px;
+            font-weight: bold;
+            float: left;
+          }
                 }
               }
               li:first-child{
@@ -97,13 +101,9 @@ html{
             -webkit-font-smoothing: antialiased;
         }
 
-          .username{
-            font-size: 16px;
-            font-weight: bold;
-            float: left;
-          }
 
-          .time{
+
+          .chat-body__time{
             font-size: 12px;
             margin-left: 10px;
             color: #999999;
@@ -111,7 +111,7 @@ html{
             padding-top: 3px;
           }
 
-          .message{
+          .chat-body__message{
             padding-top: 10px;
             font-size: 14px;
             color: #434A54;
