@@ -1,0 +1,58 @@
+.contents
+  .sidebar
+    .sidebar-above
+      .wrap2
+        .sidebar-above__top
+          %h2 Username
+          %a
+            = fa_icon "cog"
+          %a
+            = fa_icon "pencil-square-o"
+    .sidebar-bottom
+      %ul.chat-groups
+        %li.chat-group
+          %a.chat-group__link{href: ""}
+            %p.chat-group__name tech
+            %p.chat-group__intro まだメッセージはありません
+        %li.chat-group
+          %a.chat-group__link{href: ""}
+            %p.chat-group__name camp
+            %p.chat-group__intro まだメッセージはありません
+        %li.chat-group
+          %a.chat-group__link{href: ""}
+            %p.chat-group__name master
+            %p.chat-group__intro まだメッセージはありません
+
+  .main
+    .main-above
+      .wrap
+        .main-above__top
+          %a Edit
+        %h2 sampleグループ
+        %p Members: yamada taro
+    .main-bottom
+      .wrap
+        %ul
+          %li
+            .chat-body.clearfix
+              %p.chat-body__username yamada taro
+              %p.chat-body__time 2016/10/02 08:23:32
+            %p.chat-body__message おはようございます
+          %li
+            .chat-body.clearfix
+              %p.chat-body__username yamada taro
+              %p.chat-body__time 2016/10/02 08:23:32
+            %p.chat-body__message おはようございます
+          %li
+            .chat-body.clearfix
+              %p.chat-body__username yamada taro
+              %p.chat-body__time 2016/10/02 08:23:32
+            %p.chat-body__message おはようございます
+        .new-message
+          %form.new-message-form
+            .new-message-form__body
+              %textarea{name: "message[body]", placeholder: "type a message", row: "1"}
+              %label.new-message-form__body-file
+                %input#message_image{name: "message[image]", type: "file"}/
+                = fa_icon "picture-o"
+            %input#form-send{"data-disable-with": "Send", name: "commit", type: "submit", value: "Send"}/
