@@ -3,18 +3,13 @@
     width: 980px;
     margin: 60px auto;
     padding: 60px;
-    background-color: #fff;
+    background-color: $font-white;
     border: 1px solid #ddd;
     border-radius: 5px;
 
     .account-page__inner--left, .account-page__inner--right {
       float: left;
       width: 50%;
-    }
-    &:after {
-      clear: both;
-      content: "";
-      display: block;
     }
   }
 
@@ -42,7 +37,7 @@
 
     .btn {
       margin-top: 20px;
-      color: #fff;
+      color: $font-white;
       background-color: #ccc;
       font-size: 14px;
     }
@@ -85,7 +80,7 @@
   input[type='submit'] {
     float: left;
     margin-top: 20px;
-    color: #fff;
+    color: $font-white;
     background-color: #38aef0;
   }
 
