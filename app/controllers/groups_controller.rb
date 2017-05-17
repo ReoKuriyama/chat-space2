@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :find_group, only: [:edit, :update]
+  before_action :set_group, only: [:edit, :update]
   def new
     @group = Group.new
   end
@@ -12,12 +12,8 @@ class GroupsController < ApplicationController
       redirect_to :root
     else
       flash[:notice] = "グループの作成に失敗しました。"
-      redirect_to :new
+      render :new
     end
-  end
-
-  def find_group
-     @group = Group.find(params[:id])
   end
 
   def edit
@@ -29,10 +25,15 @@ class GroupsController < ApplicationController
       redirect_to :root
     else
       flash[:notice] = "グループの更新に失敗しました。"
-      redirect_to :edit
+      render :edit
     end
   end
    private
+
+  def set_group
+     @group = Group.find(params[:id])
+  end
+
   def group_params
     params.require(:group).permit(:group_name)
   end
