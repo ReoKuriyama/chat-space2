@@ -11,3 +11,15 @@
 #alert {
   background-color: red;
 }
+
+.chat-group-form__error {
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 15px;
+}
+
+.chat-group-form__error h2{
+  color: red;
+}

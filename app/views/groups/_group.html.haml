@@ -1,4 +1,12 @@
 = form_for @group do |f|
+  - if @group.errors.any?
+    .chat-group-form__error
+      %h2= "#{@group.errors.count}件のエラーが発生しました"
+      %ul
+        - @group.errors.full_messages.each do |msg|
+          %li= msg
+
+
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
       = f.label :group_name, 'グループ名', class: 'chat-group-form__label'
