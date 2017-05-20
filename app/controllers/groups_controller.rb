@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
       flash[:notice] = "グループが作成されました。"
       redirect_to :root
     else
-      flash[:notice] = "グループの作成に失敗しました。"
+      flash[:alert] = "グループの作成に失敗しました。"
       render :new
     end
   end
@@ -24,7 +24,7 @@ class GroupsController < ApplicationController
       flash[:notice] = "グループが更新されました"
       redirect_to :root
     else
-      flash[:notice] = "グループの更新に失敗しました。"
+      flash[:alert] = "グループの更新に失敗しました。"
       render :edit
     end
   end
@@ -35,6 +35,6 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:group_name)
+    params.require(:group).permit(:group_name, {:user_ids => []})
   end
 end
