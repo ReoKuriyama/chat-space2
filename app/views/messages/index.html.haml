@@ -11,16 +11,13 @@
             = fa_icon "pencil-square-o"
     .sidebar-bottom
       %ul.chat-groups
-        - current_user.groups.each do |group|
+        - @groups.each do |group|
 
           %li.chat-group
             %a.chat-group__link{href: group_messages_path(group)}
               %p.chat-group__name= group.group_name
               %p.chat-group__intro
-                - if group.messages.last
-                  = group.messages.last.body
-                - else
-                  No message
+                = group.last_message_body
 
   .main
     .main-above
@@ -38,7 +35,7 @@
           - @group.messages.each do |message|
             %li
               .chat-body
-                %p.chat-body__username=current_user.name
+                %p.chat-body__username=message.user.name
                 %p.chat-body__time=message.created_at
               %p.chat-body__message=message.body
         .new-message
