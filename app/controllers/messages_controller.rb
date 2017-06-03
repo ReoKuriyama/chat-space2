@@ -8,7 +8,9 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @group.messages.new(message_params)
+    @message = @group.messages.new(message_params)
+    @message.user = current_user
+    binding.pry
      if @message.save
       flash[:notice] = "message has been sent"
       redirect_to group_messages_path(@group)
@@ -21,7 +23,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    @message.user = current_user
     params.require(:message).permit(:body)
   end
 end

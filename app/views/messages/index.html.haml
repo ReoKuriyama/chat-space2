@@ -33,11 +33,7 @@
       .wrap
         %ul
           - @group.messages.each do |message|
-            %li
-              .chat-body
-                %p.chat-body__username=message.user.name
-                %p.chat-body__time=message.created_at
-              %p.chat-body__message=message.body
+            = render 'message', message: message
         .new-message
           = form_for [@group, @message], class: 'new-message-form' do |f|
             .new-message-form__body
