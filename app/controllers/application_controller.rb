@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
   def set_group
     @group = Group.find(params[:group_id])
   end
+
+  def set_group1
+    @group = Group.find(params[:id])
+  end
 end
