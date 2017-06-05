@@ -20,6 +20,10 @@ class MessagesController < ApplicationController
 
   private
 
+  def set_group
+    @group = Group.find(params[:group_id])
+  end
+
   def message_params
     params.require(:message).permit(:body).merge(user_id: current_user.id)
   end

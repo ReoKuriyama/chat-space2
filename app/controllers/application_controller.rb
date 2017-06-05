@@ -6,14 +6,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
-
-  private
-
-  def set_group
-    @group = Group.find(params[:group_id])
-  end
-
-  def set_group1
-    @group = Group.find(params[:id])
-  end
 end
