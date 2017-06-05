@@ -27,8 +27,8 @@
             Edit
         %h2=@group.group_name
         %p Members:
-        - @group.users.pluck(:name).each do |user_name|
-          %span=user_name
+        %span
+          = @group.users.pluck(:name).join(",")
     .main-bottom
       .wrap
         %ul
