@@ -13,8 +13,8 @@ class MessagesController < ApplicationController
       flash[:notice] = "message has been sent"
       redirect_to group_messages_path(@group)
     else
-      flash[:alert] = "failed to sent a message"
-      render :index
+      flash[:alert] = "failed to send a message"
+      redirect_to group_messages_path(@group)
     end
   end
 
@@ -25,6 +25,6 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:body).merge(user_id: current_user.id)
+    params.require(:message).permit(:body, :image).merge(user_id: current_user.id)
   end
 end
