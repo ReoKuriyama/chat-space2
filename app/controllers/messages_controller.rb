@@ -8,13 +8,14 @@ class MessagesController < ApplicationController
   end
 
   def create
+    @groups = current_user.groups.includes(:messages)
     @message = @group.messages.new(message_params)
      if @message.save
       flash[:notice] = "message has been sent"
       redirect_to group_messages_path(@group)
     else
       flash[:alert] = "failed to send a message"
-      redirect_to group_messages_path(@group)
+      render :index
     end
   end
 
