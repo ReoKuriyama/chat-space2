@@ -9,6 +9,14 @@ class Group < ApplicationRecord
   validates :group_name, presence: true
 
   def last_message_body
-    messages.last ? messages.last.body : "no message"
+    if messages.last
+      if messages.last.image?
+        "Image was uploaded"
+      else
+        messages.last.body
+      end
+    else
+      "No message"
+    end
   end
 end
