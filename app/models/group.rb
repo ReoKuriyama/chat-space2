@@ -8,15 +8,15 @@ class Group < ApplicationRecord
 #Validation
   validates :group_name, presence: true
 
- def last_message_body
+  def last_message_body
     if messages.last
       if messages.last.image?
-        return "Image was uploaded"
+        "Image was uploaded"
       else
         messages.last.body
       end
     else
-      return "No message"
+      "No message"
     end
   end
 end
