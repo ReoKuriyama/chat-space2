@@ -4,5 +4,5 @@ Rails.application.routes.draw do
     resources :messages, only: %i(index create update)
   end
 
-  root 'messages#index'
+  root 'chats#index'
 end
