@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
 
   def create
     @groups = current_user.groups.includes(:messages)
-    @message = @group.messages.new(message_params)
+    @message = Message.new(message_params)
      if @message.save
       flash[:notice] = "message has been sent"
       redirect_to group_messages_path(@group)
@@ -26,6 +26,6 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:body, :image).merge(user_id: current_user.id)
+    params.require(:message).permit(:body, :image).merge(user_id: current_user.id, group_id: params[:group_id])
   end
 end
