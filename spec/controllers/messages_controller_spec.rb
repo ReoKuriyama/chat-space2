@@ -3,6 +3,7 @@ require 'rails_helper'
 describe MessagesController, type: :controller do
   let(:user) { create(:user) }
   let(:group) { create(:group) }
+
   # userをcreateし、let内に格納
 
   describe 'GET #index' do
@@ -22,16 +23,22 @@ describe MessagesController, type: :controller do
     end
   end
 
-  describe 'Post #edit' do
+  describe 'Get #create' do
     before do
       login_user user
       # controller_macros.rb内のlogin_userメソッドを呼び出し
     end
 
-    it "saves the new contact in the database" do
-      expect{
-        post :create, params: {group_id: group}, message: attributes_for(:message)
-      }.to change(Message, :count).by(1)
+    describe 'GET #create' do
+      it 'returns http success' do
+        get :create, params: {group_id: group, message: {body: "sample"}}
+        expect(response).to redirect_to( group_messages_path)
+      end
+
+      it 'message failed' do
+        get :create, params: {group_id: group, message: {body: nil}}
+        expect(response).to render_template :index
+      end
     end
   end
 
