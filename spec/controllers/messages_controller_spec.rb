@@ -4,6 +4,7 @@ describe MessagesController, type: :controller do
   let(:message) { create(:message) }
   let(:user) { create(:user) }
   let(:group) { create(:group) }
+  let(:message_params) { { body: nil } }
 
   describe 'logined' do
     before do
@@ -43,7 +44,12 @@ describe MessagesController, type: :controller do
       it "saves the new contact in the database" do
         expect{
           post :create, params: {message: attributes_for(:message), group_id: group.id}}.to change(Message, :count).by(1)
-        end
+      end
+
+      it "saves the new contact in the database" do
+        expect{
+        get :create, params: {group_id: group, message: {body: nil}}}.to change(Message, :count).by(0)
+      end
 
       it 'message failed' do
         get :create, params: {group_id: group, message: {body: nil}}
