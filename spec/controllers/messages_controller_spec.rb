@@ -46,12 +46,12 @@ describe MessagesController, type: :controller do
           post :create, params: {message: attributes_for(:message), group_id: group.id}}.to change(Message, :count).by(1)
       end
 
-      it "saves the new contact in the database" do
+      it "doesn't save the new contact in the database" do
         expect{
         get :create, params: {group_id: group, message: {body: nil}}}.to change(Message, :count).by(0)
       end
 
-      it 'message failed' do
+      it 'if message failed, redirect_to index' do
         get :create, params: {group_id: group, message: {body: nil}}
         expect(response).to render_template :index
       end
@@ -59,7 +59,7 @@ describe MessagesController, type: :controller do
   end
 
 
-  describe 'Redirect to user_session_path' do
+  describe 'not logined' do
     it "redirect to user_session_path" do
       get :index, params: {group_id: group}
       expect(response).to redirect_to user_session_path
