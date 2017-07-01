@@ -1,19 +1,17 @@
 require 'rails_helper'
 
 describe MessagesController, type: :controller do
-  let(:message) { create(:message) }
   let(:user) { create(:user) }
-  let(:group) { create(:group) }
-  let(:message_params) { { body: nil } }
 
-  describe 'logined' do
+  describe 'Logined' do
     before do
       login_user user
+      @group = user.groups.first
     end
 
     describe 'GET #index' do
       before do
-        get :index, params: {group_id: group}
+        get :index, params: { group_id: @group.id }
       end
 
       it "assigns the requested group to @message" do
@@ -22,12 +20,12 @@ describe MessagesController, type: :controller do
       end
 
       it "assigns the requested group to @group" do
-        expect(assigns(:group)).to eq group
+        expect(assigns(:group)).to eq @group
       end
 
-      it "assigns the requested groups to @groups" do
+      it "assigns the requested contact to @groups" do
         groups = user.groups
-        expect(assigns(:groups)).to match(groups)
+        expect(assigns(:groups)).to eq groups
       end
 
       it "renders the :index template" do
@@ -37,22 +35,22 @@ describe MessagesController, type: :controller do
 
     describe 'GET #create' do
       it 'returns http success' do
-        get :create, params: {group_id: group, message: {body: "sample"}}
-        expect(response).to redirect_to( group_messages_path)
+        get :create, params: {group_id: @group.id, message: {body: "sample"}}
+        expect(response).to redirect_to(group_messages_path)
       end
 
       it "saves the new contact in the database" do
         expect{
-          post :create, params: {message: attributes_for(:message), group_id: group.id}}.to change(Message, :count).by(1)
+          post :create, params: {message: attributes_for(:message), group_id: @group.id}}.to change(Message, :count).by(1)
       end
 
       it "doesn't save the new contact in the database" do
         expect{
-        get :create, params: {group_id: group, message: {body: nil}}}.to change(Message, :count).by(0)
+        get :create, params: {group_id: @group.id, message: {body: nil}}}.to change(Message, :count).by(0)
       end
 
-      it 'if message failed, redirect_to index' do
-        get :create, params: {group_id: group, message: {body: nil}}
+      it 'renders the :index template' do
+        get :create, params: {group_id: @group.id, message: {body: nil}}
         expect(response).to render_template :index
       end
     end
@@ -60,14 +58,22 @@ describe MessagesController, type: :controller do
 
 
   describe 'not logined' do
-    it "redirect to user_session_path" do
-      get :index, params: {group_id: group}
-      expect(response).to redirect_to user_session_path
-    end
+    describe 'GET #index' do
+      before do
+        @group = user.groups.first
+        get :index, params: { group_id: @group.id }
+      end
 
-    it "Redirect to user_session_path" do
-      get :create, params: {group_id: group}
-      expect(response).to redirect_to user_session_path
+      it "redirect to user_session_path" do
+        get :index, params: {group_id: @group.id}
+        expect(response).to redirect_to user_session_path
+      end
+
+      it "redirect to user_session_path" do
+        get :create, params: {group_id: @group.id}
+        expect(response).to redirect_to user_session_path
+      end
     end
   end
 end
+
