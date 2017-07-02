@@ -3,7 +3,7 @@ require 'rails_helper'
 describe MessagesController, type: :controller do
   let(:user) { create(:user) }
 
-  describe 'Logined' do
+  context 'Logined' do
     before do
       login_user user
       @group = user.groups.first
@@ -57,7 +57,7 @@ describe MessagesController, type: :controller do
   end
 
 
-  describe 'not logined' do
+  context 'not logined' do
     describe 'GET #index' do
       before do
         @group = user.groups.first
