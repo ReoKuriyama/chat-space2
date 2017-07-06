@@ -43,7 +43,9 @@ $(function(){
       // formの入力を再度有効化する
       $("input").prop('disabled', false);
 
-      $('ul').animate({scrollBottom:0});
+      $('ul').delay(100).animate({
+      scrollTop: $(document).height()
+      },1500);
     })
     .fail(function() {
       alert('error');
