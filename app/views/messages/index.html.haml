@@ -13,7 +13,7 @@
           = @group.users.pluck(:name).join(",")
     .main-bottom
       .wrap
-        %ul
+        %ul.message_list
           - @group.messages.each do |message|
             = render 'message', message: message
         = form_for [@group, @message], class: 'new-message-form' do |f|

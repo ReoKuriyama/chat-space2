@@ -38,7 +38,12 @@ $(function(){
     .done(function(data) {
       var html = buildHTML(data);
       $('.wrap ul').append(html)
-      $('#message_body').val('')
+      $("form#new_message")[0].reset();
+
+      // formの入力を再度有効化する
+      $("input").prop('disabled', false);
+
+      $('ul').animate({scrollBottom:0});
     })
     .fail(function() {
       alert('error');
