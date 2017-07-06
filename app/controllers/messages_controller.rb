@@ -10,15 +10,20 @@ class MessagesController < ApplicationController
   def create
     @groups = current_user.groups.includes(:messages)
     @message = Message.new(message_params)
-     if @message.save
-      flash[:notice] = "message has been sent"
-      respond_to do |format|
-      format.html { redirect_to group_messages_path(@group)  }
-      format.json
-    end
-    else
-      flash[:alert] = "failed to send a message"
-      render :index
+
+    respond_to do |format|
+      if @message.save
+        format.html do
+        redirect_to group_messages_path(@group), flash[:notice] = "message has been sent"
+        end
+        format.json
+      else
+        format.html do
+        flash[:alert] = "failed to send a message"
+        render :index
+        end
+        format.json
+      end
     end
   end
 
