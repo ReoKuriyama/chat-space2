@@ -12,7 +12,10 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
      if @message.save
       flash[:notice] = "message has been sent"
-      redirect_to group_messages_path(@group)
+      respond_to do |format|
+      format.html { redirect_to group_messages_path(@group)  }
+      format.json
+    end
     else
       flash[:alert] = "failed to send a message"
       render :index
