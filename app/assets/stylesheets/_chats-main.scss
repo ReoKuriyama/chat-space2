@@ -50,6 +50,8 @@ html {
           height: calc(100% - 120px);
           ul {
             min-height: 30px;
+            overflow: scroll;
+            height: 85%;
             li {
               padding-bottom: 40px;
               .chat-body{
