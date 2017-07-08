@@ -1,10 +1,7 @@
 $(function(){
   function buildHTML(message){
-   if (message.image) {
-      var ImageHTML = '<br><img src="' + message.image + '">';
-    } else {
-      var ImageHTML = '';
-    }
+    var ImageHTML = message.image == null ?
+    '': '<br><img src="' + message.image + '">';
     var html =
       '<li>' +
       '<div class="chat-body">' +
