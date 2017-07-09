@@ -4,5 +4,7 @@ Rails.application.routes.draw do
     resources :messages, only: %i(index create update)
   end
 
+  resources :users, only: %i(index)
+
   root 'chats#index'
 end
