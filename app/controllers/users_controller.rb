@@ -2,14 +2,15 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @keyword = params[:name]
+    @keyword = params[:keyword]
     if @keyword.blank?
       @users  = []
     else
-      @users = User.where('name LIKE(?)', "%#{params[:name]}%")
-    end
-    respond_to do |format|
-      format.json
-    end
+      @users = User.where('title LIKE(?)', "%#{params[:keyword]}%")
+      respond_to do |format|
+        format.html
+        format.json
+      end
+   end
   end
 end
