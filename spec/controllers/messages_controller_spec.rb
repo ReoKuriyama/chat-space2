@@ -34,10 +34,6 @@ describe MessagesController, type: :controller do
     end
 
     describe 'GET #create' do
-      it 'returns http success' do
-        get :create, params: {group_id: @group.id, message: {body: "sample"}}
-        expect(response).to redirect_to(group_messages_path)
-      end
 
       it "saves the new contact in the database" do
         expect{
