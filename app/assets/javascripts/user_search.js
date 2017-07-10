@@ -60,8 +60,7 @@ $(function() {
   });
 
   // 削除ボタンのイベント
-  $('.chat-group-user').on('click', '.user-search-remove', function(){
-    console.log('fdsaf')
+  $('#chat-group-users').on('click', '.user-search-remove', function(){
     var id = $(this).data('userId');
     $('#chat-group-user-' + id).remove();
   })
