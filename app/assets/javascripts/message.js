@@ -46,4 +46,27 @@ $(function(){
       alert('error');
     })
   });
+
+  //自動更新機能
+  if (window.location.href.match(/\/groups\/\d+\/messages/)){
+    setInterval(function(){
+      var url = window.location.href
+      $.ajax({
+        url: url,
+        type: "GET",
+        dataType: 'json',
+      })
+      .done(function(messages){
+        var html = "";
+        messages.forEach(function(message){
+          html += buildHTML(message);
+        });
+
+        $('.wrap ul').html(html)
+      })
+      .fail(function() {
+        alert('error');
+      })
+    }, 10000);
+  }
 });
