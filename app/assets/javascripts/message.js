@@ -3,7 +3,7 @@ $(function(){
     var ImageHTML = message.image ?
     '<br><img src="' + message.image + '">': '';
     var html =
-      '<li>' +
+      '<li data-message-id="' + message.id + '">' +
       '<div class="chat-body">' +
       '<p class="chat-body__username">' +
       message.name +
@@ -57,12 +57,15 @@ $(function(){
         dataType: 'json',
       })
       .done(function(messages){
+        var lastId = $('.message_list li:last').data('messageId');
         var html = "";
         messages.forEach(function(message){
-          html += buildHTML(message);
+          if (message.id > lastId){
+            html += buildHTML(message);
+          }
         });
 
-        $('.wrap ul').html(html)
+        $('.wrap ul').append(html)
       })
       .fail(function() {
         alert('error');
