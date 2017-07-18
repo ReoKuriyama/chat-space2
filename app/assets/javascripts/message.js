@@ -20,6 +20,12 @@ $(function(){
     return html
   }
 
+   function insertNew(message, lastId){
+    if (message.id > lastId){
+      html += buildHTML(message);
+    }
+  }
+
   $('form#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -60,9 +66,7 @@ $(function(){
         var lastId = $('.message_list li:last').data('messageId');
         var html = "";
         messages.forEach(function(message){
-          if (message.id > lastId){
-            html += buildHTML(message);
-          }
+          insertNew(message ,lastId);
         });
 
         $('.wrap ul').append(html)
@@ -70,6 +74,6 @@ $(function(){
       .fail(function() {
         alert('error');
       })
-    }, 10000);
+    }, 10000);// 10秒
   }
 });
