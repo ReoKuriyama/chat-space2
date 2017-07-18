@@ -55,6 +55,7 @@ $(function(){
 
   //自動更新機能
   if (window.location.href.match(/\/groups\/\d+\/messages/)){
+    var tenSecond = 10000
     setInterval(function(){
       var url = window.location.href
       $.ajax({
@@ -74,6 +75,6 @@ $(function(){
       .fail(function() {
         alert('error');
       })
-    }, 10000);// 10秒
+    }, tenSecond);// 10秒
   }
 });
