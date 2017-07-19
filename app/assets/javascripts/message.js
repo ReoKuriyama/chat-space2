@@ -3,7 +3,7 @@ $(function(){
     var ImageHTML = message.image ?
     '<br><img src="' + message.image + '">': '';
     var html =
-      '<li>' +
+      '<li data-message-id="' + message.id + '">' +
       '<div class="chat-body">' +
       '<p class="chat-body__username">' +
       message.name +
@@ -18,6 +18,12 @@ $(function(){
       '</p>' +
       '</li>';
     return html
+  }
+
+   function insertNew(message, lastId){
+    if (message.id > lastId){
+      html += buildHTML(message);
+    }
   }
 
   $('form#new_message').on('submit', function(e){
@@ -46,4 +52,29 @@ $(function(){
       alert('error');
     })
   });
+
+  //自動更新機能
+  if (window.location.href.match(/\/groups\/\d+\/messages/)){
+    var tenSecond = 10000
+    setInterval(function(){
+      var url = window.location.href
+      $.ajax({
+        url: url,
+        type: "GET",
+        dataType: 'json',
+      })
+      .done(function(messages){
+        var lastId = $('.message_list li:last').data('messageId');
+        var html = "";
+        messages.forEach(function(message){
+          insertNew(message ,lastId);
+        });
+
+        $('.wrap ul').append(html)
+      })
+      .fail(function() {
+        alert('error');
+      })
+    }, tenSecond);// 10秒
+  }
 });
