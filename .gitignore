@@ -20,3 +20,5 @@
 
 *.pid
 *.log
+
+config/secrets.yml
