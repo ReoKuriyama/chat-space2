@@ -78,3 +78,4 @@ $(function(){
     }, tenSecond);// 10秒
   }
 });
+
