@@ -16,7 +16,7 @@ Things you may want to cover:
 
   | column | type |
 |:-----------|:----------- |
-| body n    |     text    |
+| body n     |     text    |
 | image      |    string   |
 | group_id   |   integer   |
 | user_id    |   integer   |
@@ -27,8 +27,7 @@ Things you may want to cover:
 |:-----------|:----------- |
 | name n   i|    string   |
 | email      |    string   |
-|encrypted_password *n| string|
-
+|encrypted_password n| string|
 
  ####groups
 
