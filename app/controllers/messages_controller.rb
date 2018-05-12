@@ -21,13 +21,14 @@ class MessagesController < ApplicationController
     respond_to do |format|
       if @message.save
         format.html do
-        redirect_to group_messages_path(@group), flash[:notice] = "message has been sent"
+          flash[:notice] = 'message has been sent'
+          redirect_to group_messages_path(@group)
         end
         format.json
       else
         format.html do
-        flash[:alert] = "failed to send a message"
-        render :index
+          flash[:alert] = "failed to send a message"
+          render :index
         end
         format.json
       end

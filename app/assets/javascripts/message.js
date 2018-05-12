@@ -3,7 +3,7 @@ $(function(){
     var ImageHTML = message.image ?
     '<br><img src="' + message.image + '">': '';
     var html =
-      '<li data-message-id="' + message.id + '">' +
+      '<li data-message-id=" + message.id + ">' +
       '<div class="chat-body">' +
       '<p class="chat-body__username">' +
       message.name +
@@ -78,4 +78,3 @@ $(function(){
     }, tenSecond);// 10秒
   }
 });
-
