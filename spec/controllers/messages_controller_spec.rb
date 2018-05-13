@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe MessagesController, type: :controller do
   let(:user) { create(:user) }
-
   context 'Logined' do
     before do
       login_user user
@@ -14,44 +13,46 @@ describe MessagesController, type: :controller do
         get :index, params: { group_id: @group.id }
       end
 
-      it "assigns the requested group to @message" do
-        message = Message.new
+      it 'assigns the requested message to @message' do
         expect(assigns(:message)).to be_a_new Message
       end
 
-      it "assigns the requested group to @group" do
+      it 'assigns the requested group to @group' do
         expect(assigns(:group)).to eq @group
       end
 
-      it "assigns the requested contact to @groups" do
+      it 'assigns the requested groups to @groups' do
         groups = user.groups
         expect(assigns(:groups)).to eq groups
       end
 
-      it "renders the :index template" do
+      it 'renders the :index template' do
         expect(response).to render_template :index
       end
     end
 
     describe 'GET #create' do
+      context 'invalid message' do
+        before do
+          get :create, params: { group_id: @group.id, message: { body: nil } }
+        end
 
-      it "saves the new contact in the database" do
-        expect{
-          post :create, params: {message: attributes_for(:message), group_id: @group.id}}.to change(Message, :count).by(1)
+        it "doesn't save the new contact in the database" do
+          expect change(Message, :count).by(0)
+        end
+
+        it 'renders the :index template' do
+          expect(response).to render_template :index
+        end
       end
-
-      it "doesn't save the new contact in the database" do
-        expect{
-        get :create, params: {group_id: @group.id, message: {body: nil}}}.to change(Message, :count).by(0)
-      end
-
-      it 'renders the :index template' do
-        get :create, params: {group_id: @group.id, message: {body: nil}}
-        expect(response).to render_template :index
+      context 'valid message' do
+        it 'saves the new contact in the database' do
+          @params = { group_id: @group.id, message: { body: 'test' } }
+          expect { get :create, params: @params }.to change(Message, :count).by(1)
+        end
       end
     end
   end
-
 
   context 'not logined' do
     describe 'GET #index' do
@@ -60,16 +61,10 @@ describe MessagesController, type: :controller do
         get :index, params: { group_id: @group.id }
       end
 
-      it "redirect to user_session_path" do
-        get :index, params: {group_id: @group.id}
-        expect(response).to redirect_to user_session_path
-      end
-
-      it "redirect to user_session_path" do
-        get :create, params: {group_id: @group.id}
+      it 'redirect to user_session_path' do
+        get :index, params: { group_id: @group.id }
         expect(response).to redirect_to user_session_path
       end
     end
   end
 end
-
