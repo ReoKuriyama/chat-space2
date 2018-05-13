@@ -9,15 +9,13 @@ class MessagesController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        @messages = @group.messages.includes(:user)
+        @messages = @group.messages.where('id > ?', params[:last_message_id])
       end
     end
   end
 
   def create
-    @groups = current_user.groups.includes(:messages)
     @message = Message.new(message_params)
-
     respond_to do |format|
       if @message.save
         format.html do
@@ -27,7 +25,7 @@ class MessagesController < ApplicationController
         format.json
       else
         format.html do
-          flash[:alert] = "failed to send a message"
+          flash[:alert] = 'failed to send a message'
           render :index
         end
         format.json
