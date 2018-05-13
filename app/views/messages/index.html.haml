@@ -10,11 +10,11 @@
         %h2=@group.group_name
         %p Members:
         %span
-          = @group.users.pluck(:name).join(",")
+          = @group.users.pluck(:name).join(',')
     .main-bottom
       .wrap
         %ul.message_list
-          - @group.messages.each do |message|
+          - @group.messages.includes(:user).each do |message|
             = render 'message', message: message
         = form_for [@group, @message], class: 'new-message-form' do |f|
           .new-message-form__body
