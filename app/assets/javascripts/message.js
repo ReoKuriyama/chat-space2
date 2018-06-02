@@ -3,7 +3,7 @@ $(function(){
     var ImageHTML = message.image ?
     '<br><img src="' + message.image + '">': '';
     var html =
-      '<li data-message-id="' + message.id + '">' +
+      '<li data-message-id=" + message.id + ">' +
       '<div class="chat-body">' +
       '<p class="chat-body__username">' +
       message.name +
@@ -20,10 +20,8 @@ $(function(){
     return html
   }
 
-   function insertNew(message, lastId){
-    if (message.id > lastId){
-      html += buildHTML(message);
-    }
+   function insertNew(message){
+      return buildHTML(message);
   }
 
   $('form#new_message').on('submit', function(e){
@@ -56,20 +54,20 @@ $(function(){
   //自動更新機能
   if (window.location.href.match(/\/groups\/\d+\/messages/)){
     var tenSecond = 10000
+    var lastId = $('.message_list li:last').data('messageId');
     setInterval(function(){
       var url = window.location.href
       $.ajax({
         url: url,
         type: "GET",
+        data: { last_message_id: lastId },
         dataType: 'json',
       })
       .done(function(messages){
-        var lastId = $('.message_list li:last').data('messageId');
         var html = "";
         messages.forEach(function(message){
-          insertNew(message ,lastId);
+           html += insertNew(message);
         });
-
         $('.wrap ul').append(html)
       })
       .fail(function() {
@@ -78,4 +76,3 @@ $(function(){
     }, tenSecond);// 10秒
   }
 });
-

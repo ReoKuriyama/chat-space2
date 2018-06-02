@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     @keyword = params[:name]
     if @keyword.blank?
-      @users  = []
+      @users = []
     else
       @users = User.where('name LIKE(?)', "%#{params[:name]}%").where.not(name: current_user.name )
 
