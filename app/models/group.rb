@@ -9,13 +9,13 @@ class Group < ApplicationRecord
 
   def last_message_body
     if messages.last
-      if messages.last.image?
-        'Image was uploaded'
-      else
-        messages.last.body
-      end
+      message_last
     else
       'No message'
     end
+  end
+
+  def message_last
+    messages.last.try!(:body) || 'image was uploaded'
   end
 end

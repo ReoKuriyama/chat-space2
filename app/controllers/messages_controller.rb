@@ -1,7 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_group
-
   def index
     @message = Message.new
     @groups = current_user.groups.includes(:messages)
@@ -40,6 +38,7 @@ class MessagesController < ApplicationController
   end
 
   def message_params
+    params[:message][:body] = nil if params[:message][:body] == ''
     params.require(:message).permit(:body, :image).merge(user_id: current_user.id, group_id: params[:group_id])
   end
 end
